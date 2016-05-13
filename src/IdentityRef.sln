@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityRef", "IdentityRef\IdentityRef.csproj", "{08A4D7B3-70EA-47AC-861E-0CA0DBEC5165}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityRef.UnitTests", "IdentityRef.UnitTests\IdentityRef.UnitTests.csproj", "{E305F655-7BEC-44EF-AFD2-0A99B545CEC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08A4D7B3-70EA-47AC-861E-0CA0DBEC5165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A4D7B3-70EA-47AC-861E-0CA0DBEC5165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A4D7B3-70EA-47AC-861E-0CA0DBEC5165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08A4D7B3-70EA-47AC-861E-0CA0DBEC5165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E305F655-7BEC-44EF-AFD2-0A99B545CEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E305F655-7BEC-44EF-AFD2-0A99B545CEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E305F655-7BEC-44EF-AFD2-0A99B545CEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E305F655-7BEC-44EF-AFD2-0A99B545CEC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

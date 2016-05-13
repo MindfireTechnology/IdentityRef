@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>Mindfire.IdentityRef</id>
+		<version>1.0.0.0</version>
+		<title>IdentityRef</title>
+		<authors>Mindfire Technology, Nate Zaugg</authors>
+		<owners>Mindfire Technology, Nate Zaugg</owners>
+		<licenseUrl>https://github.com/MindfireTechnology/IdentityRef/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/MindfireTechnology/IdentityRef</projectUrl>
+		<iconUrl>https://avatars3.githubusercontent.com/u/13372702?v=3&amp;s=200</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<summary>
+			Identity is a struct that can be used as an identity of a class. It's URL safe,
+			case-insensitive, and very short for a global unique identifier at 16 chars.
+		</summary>
+	<description>
+		A .NET object for creating ID fields for Domain Driven Design objects or Document Database ID's.
+		The Id's generated are 16 charactors long so they are much more easy to work with than a GUID.
+
+		Identity is a struct that can be used as an identity of a class. It's URL safe,
+		case-insensitive, and very short for a global unique identifier at 16 chars.
+
+		Identity uses a 80 bits, 24 bits are date/time and the rest (56 bits) are random.
+		There are over 72 quadrillion possible values every hour (approximate)
+		with over 1 septillion total possible values.
+	</description>
+		<releaseNotes>Initial general release.</releaseNotes>
+		<copyright>Copyright 2016</copyright>
+		<tags>OOP, DDD, Object Oriented Programming, Objects, ID</tags>
+	</metadata>
+</package>
