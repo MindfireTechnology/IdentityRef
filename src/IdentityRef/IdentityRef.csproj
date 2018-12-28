@@ -1,60 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08A4D7B3-70EA-47AC-861E-0CA0DBEC5165}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IdentityRef</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>IdentityRef</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <Company>Mindfire Technology</Company>
+    <Copyright>Copyright ©  2018</Copyright>
+    <PackageId>Mindfire.IdentityRef</PackageId>
+    <Authors>Mindfire Technology, Nate Zaugg</Authors>
+    <Description>A .NET object for creating ID fields for Domain Driven Design objects or Document Database ID's.
+The Id's generated are 16 charactors long so they are much more easy to work with than a GUID.
+
+Identity is a struct that can be used as an identity of a class. It's URL safe,
+case-insensitive, and very short for a global unique identifier at 16 chars.
+
+Identity uses a 80 bits, 24 bits are date/time and the rest (56 bits) are random.
+There are over 72 quadrillion possible values every hour (approximate)
+with over 1 septillion total possible values.</Description>
+    <PackageReleaseNotes>Initial general release.</PackageReleaseNotes>
+    <PackageTags>OOP, DDD, Object Oriented Programming, Objects, ID</PackageTags>
+    <PackageLicenseUrl>https://github.com/MindfireTechnology/IdentityRef/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/MindfireTechnology/IdentityRef</PackageProjectUrl>
+    <PackageIconUrl>https://avatars3.githubusercontent.com/u/13372702?v=3&amp;amp;s=200</PackageIconUrl>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Identity.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="IdentityRef.nuspec" />
-    <None Include="Mindfire.IdentityRef.1.0.0.0.nupkg" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)..\Build Tools\nuget.exe" pack "$(ProjectDir)IdentityRef.csproj" -Prop Configuration=Release</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-			 Other similar extension points exist, see Microsoft.Common.targets.
-	<Target Name="BeforeBuild">
-	</Target>
-	<Target Name="AfterBuild">
-	</Target>
-	-->
+
 </Project>
