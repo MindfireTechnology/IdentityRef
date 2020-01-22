@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>IdentityRef</AssemblyName>
+    <RootNamespace>IdentityRef</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\IdentityRef\Identity.cs" Link="Identity.cs" />
+  </ItemGroup>
+
+</Project>
