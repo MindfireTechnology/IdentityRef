@@ -68,11 +68,18 @@ namespace IdentityFramework
 			Id = id;
 		}
 
-		private Identity(bool nothing = true /* unused parameter to allow for a unique type signature */)
+		private Identity(bool autoGenerateId = true)
 		{
-			Id = GenerateNewId();
+			if (autoGenerateId)
+				Id = GenerateNewId();
+			else
+				Id = Identity.Empty;
 		}
 
+		/// <summary>
+		/// Returns the identity as a byte[10]
+		/// </summary>
+		/// <returns>byte array contianing the unique identity</returns>
 		public byte[] ToByteArray()
 		{
 			return Id;
@@ -103,24 +110,6 @@ namespace IdentityFramework
 			return ConvertToString(Id);
 		}
 
-		public override bool Equals(object obj)
-		{
-			if (obj is Identity)
-				return this == (Identity)obj;
-
-			if (obj is string)
-				return this == (string)obj;
-
-			if (obj is byte[])
-			{
-				Identity id;
-				if (TryParse((byte[])obj, out id))
-					return this == id;
-			}
-
-			return false;
-		}
-
 		public override int GetHashCode()
 		{
 			unchecked
@@ -136,6 +125,10 @@ namespace IdentityFramework
 			}
 		}
 
+		/// <summary>
+		/// Create a new instance of Identity with a new Identity value
+		/// </summary>
+		/// <returns>A new unique Identity instance</returns>
 		public static Identity NewIdentity()
 		{
 			Identity result = new Identity(true);
@@ -165,6 +158,12 @@ namespace IdentityFramework
 			return new Identity(id);
 		}
 
+		/// <summary>
+		/// Try to parse a byte array into an Identity
+		/// </summary>
+		/// <param name="id">The byte array containing the Identity</param>
+		/// <param name="result">If successful (return) then this will contain the new Identity</param>
+		/// <returns>True if the conversion was successful, otherwise false</returns>
 		public static bool TryParse(byte[] id, out Identity result)
 		{
 			if (id == null || id.Length != 10)
@@ -177,6 +176,12 @@ namespace IdentityFramework
 			return true;
 		}
 
+		/// <summary>
+		/// Try to parse a string into an Identity
+		/// </summary>
+		/// <param name="id">The string containaining the Identity</param>
+		/// <param name="result">If successful (return) then this will contain the new Identity</param>
+		/// <returns>True if the conversion was successful, otherwise false</returns>
 		public static bool TryParse(string id, out Identity result)
 		{
 			id = id.ToLower();
@@ -190,6 +195,29 @@ namespace IdentityFramework
 			return true;
 		}
 
+		private static byte[] ParseIdString(string id)
+		{
+			byte[] result = new byte[10];
+			var bits = new bool[80];
+			int index = 0;
+			foreach (char ch in id)
+			{
+				for (int shiftBits = 4; shiftBits >= 0; shiftBits--)
+				{
+					bits[index++] = (Array.IndexOf(Chars, ch) & (1 << shiftBits)) > 0;
+				}
+			}
+
+			for (index = 0; index < 80; index++)
+			{
+				result[index / 8] |= (byte)((bits[index] ? 1 : 0) << (7 - (index % 8)));
+			}
+
+			return result;
+		}
+
+
+		// Implicit Conversions:
 		public static implicit operator string(Identity id)
 		{
 			return id.ToString();
@@ -208,6 +236,25 @@ namespace IdentityFramework
 		public static explicit operator Identity(byte[] id)
 		{
 			return new Identity(id);
+		}
+
+		// Equality
+		public override bool Equals(object obj)
+		{
+			if (obj is Identity)
+				return this == (Identity)obj;
+
+			if (obj is string)
+				return this == (string)obj;
+
+			if (obj is byte[])
+			{
+				Identity id;
+				if (TryParse((byte[])obj, out id))
+					return this == id;
+			}
+
+			return false;
 		}
 
 		public static bool operator ==(Identity a, Identity b)
@@ -264,27 +311,7 @@ namespace IdentityFramework
 			return result;
 		}
 
-		private static byte[] ParseIdString(string id)
-		{
-			byte[] result = new byte[10];
-			var bits = new bool[80];
-			int index = 0;
-			foreach (char ch in id)
-			{
-				for (int shiftBits = 4; shiftBits >= 0; shiftBits--)
-				{
-					bits[index++] = (Array.IndexOf(Chars, ch) & (1 << shiftBits)) > 0;
-				}
-			}
-
-			for (index = 0; index < 80; index++)
-			{
-				result[index / 8] |= (byte)((bits[index] ? 1 : 0) << (7 - (index % 8)));
-			}
-
-			return result;
-		}
-
+		// Enumerable
 		private static IEnumerable<bool> EnumerateBits(byte[] values)
 		{
 			return EnumerateBits(new MemoryStream(values));
